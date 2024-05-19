@@ -1,0 +1,30 @@
+﻿.image-container {
+    text-align: center;
+}
+
+
+.info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 15px;
+}
+
+.left-info {
+    flex: 1;
+}
+
+.right-info {
+    text-align: right;
+    flex: 0;
+}
+
+.price {
+    font-size: 1.9em;
+    font-weight: bold;
+}
+
+
+#add-to-cart-btn .me-2 {
+    margin-right: 0 !important;
+}
