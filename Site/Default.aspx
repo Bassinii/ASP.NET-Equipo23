@@ -23,9 +23,11 @@
                 <span class="ms-2">Minecart</span>
             </a>
 
-            <button id="add-to-cart-btn" class="btn btn-primary d-flex align-items-center ms-auto">
-                <img src="/Content/basket.svg" alt="Imagen del botón" width="24" height="24" class="me-2"/>
-            </button>
+           <a id="add-to-cart-btn" href="/Carrito.aspx" class="btn btn-primary d-flex align-items-center ms-auto">
+    <img src="/Content/basket.svg" alt="Imagen del botón" width="24" height="24" class="me-2"/>
+    Ver carrito
+</a>
+
         </div>
     </nav>
 
@@ -54,21 +56,26 @@
                                     <h5 class="card-title"><%= articulo.nombre %></h5>
                                     <div class="info-container">
                                         <div class="left-info">
-                                            <p class="brand">Marca</p>
-                                            <p>Samsung</p>
-                                            <p class="category">CATEGORIA</p>
-                                            <p>TELEVISORES</p>
+                                            <p class="brand">Marca:</p>
+                                            <p><%=articulo.marca.descripcion %></p>
+                                            <p class="category">Categoria:</p>
+                                            <p><%=articulo.categoria.descripcion%></p>
                                         </div>
                                         <div class="right-info">
-                                            <p class="price">$1234.56</p>
+                                            <p class="price">$<%=articulo.precio%></p>
+
                                         </div>
                                     </div>
-                                </div>
+                              </div>
+                                
                                 <div class="card-footer">
-                                    <a href="/">Ver Detalle</a>
+                                    <a href="/" class="btn btn-primary">Ver Detalle</a>
+                                      <a href="#" class="btn btn-primary" runat="server" OnCommand="AgregarAlCarrito_Command" CommandArgument='<%= articulo.id %>' CommandName="AgregarAlCarrito">Agregar al carrito</a>
+                                   <!-- <asp:LinkButton ID="btnAgregarAlCarrito" CssClass="btn btn-primary" runat="server" OnCommand="AgregarAlCarrito_Command" CommandName="AgregarAlCarrito" CommandArgument='<%=articulo. %>' Text="Agregar al carrito"></asp:LinkButton> --!>
 
-                                </div>
+                                      </div>
                             </div>
+                         
                         </div>
 
                     <% } %>
