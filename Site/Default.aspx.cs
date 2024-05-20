@@ -24,7 +24,7 @@ namespace Site
             Session.Add("Carrito", ListCarrito);
 
             //se trae el id del articulo añadido al carrito
-            if (Request.QueryString["id"] != null )
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 1 )
             {
                 int id = int.Parse(Request.QueryString["id"]);
                 //busca el id del articulo seleccionado para guardarlo en una variable
@@ -33,8 +33,17 @@ namespace Site
                 //lo añade a la lista del carrito
                 ListCarrito.Add(seleccionado);
             }
-            
-            
+
+            if(Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 0)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                Articulo seleccionado = ListCarrito.Find(x => x.id == id);
+                ListCarrito.Remove(seleccionado);
+            }
+
+
+
+
         }
 
 

@@ -40,7 +40,7 @@
             </div>
 
             <!-- Offcanvas -->
-            <section class="offcanvas offcanvas-end bg-light" id="carrito" tabindex="-1">
+            <section class="offcanvas offcanvas-end bg-light custom-offcanvas-width" id="carrito" tabindex="-1">
                 <div class="offcanvas-header">      
                         <h5>Carrito</h5>
                         <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>       
@@ -59,6 +59,8 @@
                                     <h5 class="card-title"> <%= articulo1.nombre %> </h5>
                                     <p class="card-text">Categoria: <%= articulo1.categoria.descripcion %> </p>
                                     <p class="card-text" >Marca: <%= articulo1.marca.descripcion %> </p>
+                                    <%--<button type="button" class="btn-close" aria-label="Close"></button>--%>
+                                    <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close" ></a>
                                     <%--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--%>
                                   </div>
                                 </div>
@@ -100,7 +102,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <a href="DetalleArticulo.aspx?id=<%: articulo.id %>">Ver Detalle</a>
-                                        <a href="Default.aspx?id=<%= articulo.id %>" class="btn btn-primary btn-sm" >Agregar al carrito</a>
+                                        <a href="Default.aspx?id=<%= articulo.id %>&action=1" class="btn btn-primary btn-sm" >Agregar al carrito</a>
                                     </div>
                                 </div>
                             </div>
