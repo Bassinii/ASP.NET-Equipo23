@@ -442,5 +442,49 @@ namespace Negocio
    }
 }
 */
+        public Articulo obtenerPorId(int id)
+        {
+            Articulo articulo = null;
+            AccesoDatos datosArticulo = new AccesoDatos();
+            try
+            {
+                datosArticulo.setearConsulta("SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, C.Descripcion AS Categoria, A.Precio, M.Id, C.Id FROM ARTICULOS A LEFT JOIN Categorias C ON A.IdCategoria = C.Id LEFT JOIN Marcas M ON A.IdMarca = M.Id WHERE A.Id = @Id");
+                datosArticulo.setearParametro("@Id", id);
+                datosArticulo.ejecutarLectura();
+
+                if (datosArticulo.Lector.Read())
+                {
+                    articulo = new Articulo();
+                    articulo.id = datosArticulo.Lector.GetInt32(0);
+                    articulo.codigo = (string)datosArticulo.Lector["Codigo"];
+                    articulo.nombre = (string)datosArticulo.Lector["Nombre"];
+                    articulo.descripcion = (string)datosArticulo.Lector["Descripcion"];
+                    articulo.marca = new Marca { descripcion = (string)datosArticulo.Lector["Marca"], id = datosArticulo.Lector.GetInt32(7) };
+                    string categoria = string.Empty;
+                    if (!datosArticulo.Lector.IsDBNull(datosArticulo.Lector.GetOrdinal("Categoria")))
+                    {
+                        articulo.categoria = new Categoria { descripcion = (string)datosArticulo.Lector["Categoria"], id = datosArticulo.Lector.GetInt32(8) };
+                    }
+                    else
+                    {
+                        categoria = "Sin categoría";
+                        articulo.categoria = new Categoria { descripcion = categoria };
+                    }
+                    articulo.precio = (float)datosArticulo.Lector.GetDecimal(6);
+                    articulo.listImagenes = GetImagenes(id); // Guarda en la lista todas las fotos del producto.
+                }
+
+                return articulo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                throw ex;
+            }
+            finally
+            {
+                datosArticulo.CerrarConexion();
+            }
+        }
     }
 }      
