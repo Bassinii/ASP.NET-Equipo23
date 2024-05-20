@@ -8,7 +8,6 @@ using ClasesDeDominio;
 using System.Windows.Forms;
 using System.Data;
 using System.Drawing;
-using System.Data.SqlClient;
 using System.Security.Claims;
 
 namespace Negocio

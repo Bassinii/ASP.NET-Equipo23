@@ -12,6 +12,8 @@ namespace Site
 {
     public partial class DetalleArticulo1 : System.Web.UI.Page
     {
+        public List<Articulo> ListCarrito;
+        public List<Articulo> ListArticulos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,6 +45,25 @@ namespace Site
                     Response.Write("ID no proporcionado.");
                 }
             }
+
+            NegocioArticulo negocio = new NegocioArticulo();
+            ListArticulos = negocio.listar();
+
+            ListCarrito = Session["Carrito"] != null ? (List<Articulo>)Session["Carrito"] : new List<Articulo>();
+            Session.Add("Carrito", ListCarrito);
+
+            //se trae el id del articulo añadido al carrito
+            if (Request.QueryString["id"] != null)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                //busca el id del articulo seleccionado para guardarlo en una variable
+                Articulo seleccionado = ListArticulos.Find(x => x.id == id);
+
+                //lo añade a la lista del carrito
+                ListCarrito.Add(seleccionado);
+            }
+
+
         }
         private void CargarDetalleArticulo(int articuloId)
         {
