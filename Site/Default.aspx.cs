@@ -13,7 +13,7 @@ namespace Site
     {
         public List<Articulo> ListArticulos { get; set; }
         public List<Articulo> ListCarrito;
-
+        public float TotalCarrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             NegocioArticulo negocio = new NegocioArticulo();
@@ -33,8 +33,8 @@ namespace Site
                 //lo añade a la lista del carrito
                 ListCarrito.Add(seleccionado);
             }
-
-            if(Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 0)
+            TotalCarrito = ListCarrito.Sum(articulo => articulo.precio);
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 0)
             {
                 int id = int.Parse(Request.QueryString["id"]);
                 Articulo seleccionado = ListCarrito.Find(x => x.id == id);

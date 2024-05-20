@@ -42,36 +42,37 @@
             <!-- Offcanvas -->
             <section class="offcanvas offcanvas-end bg-light custom-offcanvas-width" id="carrito" tabindex="-1">
                 <div class="offcanvas-header">      
-                        <h5>Carrito</h5>
-                        <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>       
+                    <h5>Carrito</h5>
+                    <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>       
                 </div>
-                    <div class="offcanvas-body">
-
-
-                        <%foreach (ClasesDeDominio.Articulo articulo1 in ListCarrito){%>
-                            <div class="card mb-3" style="max-width: 540px;">
-                              <div class="row g-0">
+                <div class="offcanvas-body">
+                    <% foreach (ClasesDeDominio.Articulo articulo1 in ListCarrito) { %>
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
                                 <div class="col-md-4">
-                                  <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');"/>
+                                    <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');"/>
                                 </div>
                                 <div class="col-md-8">
-                                  <div class="card-body">
-                                    <h5 class="card-title"> <%= articulo1.nombre %> </h5>
-                                    <p class="card-text">Categoria: <%= articulo1.categoria.descripcion %> </p>
-                                    <p class="card-text" >Marca: <%= articulo1.marca.descripcion %> </p>
-                                    <%--<button type="button" class="btn-close" aria-label="Close"></button>--%>
-                                    <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close" ></a>
-                                    <%--<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--%>
-                                  </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title"><%= articulo1.nombre %></h5>
+                                        <p class="card-text">Categoría: <%= articulo1.categoria.descripcion %></p>
+                                        <p class="card-text">Marca: <%= articulo1.marca.descripcion %></p>
+                                        <p class="card-text">Precio: $<%= articulo1.precio %></p>
+                                        <div class="d-flex align-items-center">
+                                            <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close"></a>
+                                            <span class="ms-2">Eliminar</span>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
                             </div>
-                        <%}%>
-
-                        <%--<img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" style="max-width: 100%; max-height: 100%;"/>--%>
-                            
+                        </div>
+                    <% } %>
+                    <!-- Mostrar el Total del Carrito -->
+                    <div class="d-flex justify-content-between align-items-center mt-4">
+                        <h5>Total: $<%= TotalCarrito %></h5>
+                        <a href="#" class="btn btn-primary">Finalizar compra</a>
                     </div>
-                
+                </div>
             </section>
 
             <!-- Contenido Principal -->
@@ -91,18 +92,18 @@
                                         <div class="info-container">
                                             <div class="left-info">
                                                 <p class="brand">Marca</p>
-                                                <p> <%= articulo.marca.descripcion %> </p>
+                                                <p><%= articulo.marca.descripcion %></p>
                                                 <p class="category">CATEGORIA</p>
-                                                <p> <%=articulo.categoria.descripcion %> </p>
+                                                <p><%= articulo.categoria.descripcion %></p>
                                             </div>
                                             <div class="right-info">
-                                                <p class="price"> <%= "$" + articulo.precio %> </p>
+                                                <p class="price">$<%= articulo.precio %></p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <a href="DetalleArticulo.aspx?id=<%: articulo.id %>">Ver Detalle</a>
-                                        <a href="Default.aspx?id=<%= articulo.id %>&action=1" class="btn btn-primary btn-sm" >Agregar al carrito</a>
+                                        <a href="DetalleArticulo.aspx?id=<%= articulo.id %>" class="btn btn-secondary btn-sm">Ver Detalle</a>
+                                        <a href="Default.aspx?id=<%= articulo.id %>&action=1" class="btn btn-primary btn-sm">Agregar al carrito</a>
                                     </div>
                                 </div>
                             </div>
@@ -114,6 +115,5 @@
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    
 </body>
 </html>
