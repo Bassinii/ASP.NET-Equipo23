@@ -1,4 +1,18 @@
-﻿.image-container {
+﻿.carousel-item img {
+    max-width: 25%;
+}
+
+.carousel-inner img {
+    margin: auto; /* Centra horizontalmente */
+    display: block; /* Para garantizar que se respete el margen auto */
+    max-width: 25%;
+}
+
+.carousel-inner {
+    text-align: center; /* Centra todo el contenido horizontalmente */
+}
+
+.image-container {
     text-align: center;
 }
 
@@ -28,3 +42,23 @@
 #add-to-cart-btn .me-2 {
     margin-right: 0 !important;
 }
+
+.detail-info-container {
+    text-align: center;
+    background-color: #f2f2f2; /* Color de fondo para diferenciar */
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
+}
+
+.detail-left-info, .detail-right-info {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+}
+
+.detail-left-info {
+    margin-right: 10px; /* Ajusta el espacio entre los elementos si es necesario */
+}
+

@@ -50,26 +50,31 @@
                         <div class="col">
                             <div class="card h-100">
                                 
-                                    <img src="<%= !string.IsNullOrEmpty(articulo.listImagenes[0].urlImagen) ? articulo.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="card-img-top align-middle" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" style="max-width: 100%; max-height: 100%;"/>
-                                
-                                <div class="card-body">
+<img src="<%= (articulo.listImagenes != null && articulo.listImagenes.Count > 0 && !string.IsNullOrEmpty(articulo.listImagenes[0].urlImagen)) ? articulo.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>"
+     class="card-img-top align-middle" 
+     alt="..." 
+     data-default="/Content/noimage.jpg" 
+     onerror="this.onerror=null;this.src=this.getAttribute('data-default');" 
+     style="max-width: 100%; max-height: 100%;" />                                
+                               <div class="card-body">
                                     <h5 class="card-title"><%= articulo.nombre %></h5>
                                     <div class="info-container">
                                         <div class="left-info">
-                                            <p class="brand">Marca:</p>
-                                            <p><%=articulo.marca.descripcion %></p>
-                                            <p class="category">Categoria:</p>
-                                            <p><%=articulo.categoria.descripcion%></p>
+                                            <p class="brand">Marca</p>
+                                            <p><%= articulo.marca %></p>
+                                            <p class="category">CATEGORIA</p>
+                                            <p><%= articulo.categoria %></p>
                                         </div>
                                         <div class="right-info">
-                                            <p class="price">$<%=articulo.precio%></p>
+                                            <p class="price"><%= articulo.precio %></p>
 
                                         </div>
                                     </div>
                               </div>
                                 
                                 <div class="card-footer">
-                                    <a href="/" class="btn btn-primary">Ver Detalle</a>
+                                   
+                                    <a href="DetalleArticulo.aspx?id=<%: articulo.id %>" class="btn btn-primary">Ver Detalle</a>
                                       <a href="#" class="btn btn-primary" runat="server" OnCommand="AgregarAlCarrito_Command" CommandArgument='<%= articulo.id %>' CommandName="AgregarAlCarrito">Agregar al carrito</a>
                                    <!-- <asp:LinkButton ID="btnAgregarAlCarrito" CssClass="btn btn-primary" runat="server" OnCommand="AgregarAlCarrito_Command" CommandName="AgregarAlCarrito" CommandArgument='<%=articulo. %>' Text="Agregar al carrito"></asp:LinkButton> --!>
 
