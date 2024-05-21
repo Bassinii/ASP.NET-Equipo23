@@ -47,9 +47,10 @@
                 </div>
                 <div class="offcanvas-body">
                     <% foreach (ClasesDeDominio.Articulo articulo1 in ListCarrito) { %>
-                        <div class="card mb-3" style="max-width: 540px;">
-                            <div class="row g-0">
-                                <div class="col-md-4">
+                        <div class="card mb-3" style="max-width: 540px;">                       
+                            <div class="row g-0">     
+                                <div class="col-md-4 d-flex align-items-start">
+                                    <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close p-3 pt-2 align-self-start"></a> 
                                     <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');"/>
                                 </div>
                                 <div class="col-md-8">
@@ -57,11 +58,7 @@
                                         <h5 class="card-title"><%= articulo1.nombre %></h5>
                                         <p class="card-text">Categoría: <%= articulo1.categoria.descripcion %></p>
                                         <p class="card-text">Marca: <%= articulo1.marca.descripcion %></p>
-                                        <p class="card-text">Precio: $<%= articulo1.precio %></p>
-                                        <div class="d-flex align-items-center">
-                                            <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close"></a>
-                                            <span class="ms-2">Eliminar</span>
-                                        </div>
+                                        <p class="card-text">Precio: $<%= articulo1.precio %></p>          
                                     </div>
                                 </div>
                             </div>

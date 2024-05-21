@@ -45,7 +45,7 @@
 
 .detail-info-container {
     text-align: center;
-    background-color: #f2f2f2; /* Color de fondo para diferenciar */
+    background-color: #f2f2f2; 
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra para resaltar */
@@ -97,7 +97,7 @@
 .square-div {
     width: 100%;
     position: relative;
-    padding-top: 100%; /* This makes the height equal to the width */
+    padding-top: 100%; 
 }
 
 .square-div-content {
@@ -114,7 +114,7 @@
 .square-div-content img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+    object-fit: contain; 
 }
 
 .custom-offcanvas-width{
@@ -122,7 +122,7 @@
 }
 
 .offcanvas img {
-    width: 85%; /* Reduce el tamaño de la imagen al 85% de su tamaño original */
-    max-width: 85%; /* Asegura que la imagen no supere el 85% de su tamaño original */
+    width: 85%; 
+    max-width: 85%;
     height: auto; /* Mantiene la proporción de la imagen */
 }
