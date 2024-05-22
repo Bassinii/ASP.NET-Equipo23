@@ -25,3 +25,10 @@ C:\Users\Bruno\Desktop\UTN\Tercer Cuatrimestre\Programacion III\TP3\TP-ASP.NET-E
 C:\Users\Bruno\Desktop\UTN\Tercer Cuatrimestre\Programacion III\TP3\TP-ASP.NET-Equipo23\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 C:\Users\Bruno\Desktop\UTN\Tercer Cuatrimestre\Programacion III\TP3\TP-ASP.NET-Equipo23\Negocio\obj\Debug\Negocio.dll
 C:\Users\Bruno\Desktop\UTN\Tercer Cuatrimestre\Programacion III\TP3\TP-ASP.NET-Equipo23\Negocio\obj\Debug\Negocio.pdb
+C:\Users\Usuario\3D Objects\.net\TP-ASP.NET-Equipo23\Negocio\bin\Debug\Negocio.dll
+C:\Users\Usuario\3D Objects\.net\TP-ASP.NET-Equipo23\Negocio\bin\Debug\Negocio.pdb
+C:\Users\Usuario\3D Objects\.net\TP-ASP.NET-Equipo23\Negocio\bin\Debug\ClasesdeDominio.dll
+C:\Users\Usuario\3D Objects\.net\TP-ASP.NET-Equipo23\Negocio\bin\Debug\ClasesdeDominio.pdb
+C:\Users\Usuario\3D Objects\.net\TP-ASP.NET-Equipo23\Negocio\obj\Debug\Negocio.csprojResolveAssemblyReference.cache
+C:\Users\Usuario\3D Objects\.net\TP-ASP.NET-Equipo23\Negocio\obj\Debug\Negocio.dll
+C:\Users\Usuario\3D Objects\.net\TP-ASP.NET-Equipo23\Negocio\obj\Debug\Negocio.pdb

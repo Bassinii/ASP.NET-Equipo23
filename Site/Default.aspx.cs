@@ -14,6 +14,8 @@ namespace Site
         public List<Articulo> ListArticulos { get; set; }
         public List<Articulo> ListCarrito;
         public float TotalCarrito { get; set; }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             NegocioArticulo negocio = new NegocioArticulo();
@@ -40,15 +42,7 @@ namespace Site
                 Articulo seleccionado = ListCarrito.Find(x => x.id == id);
                 ListCarrito.Remove(seleccionado);
             }
-
-
-
-
         }
-
-
-
-      
     }
 }
 
