@@ -44,6 +44,26 @@
                         </svg>
                     </button>
                 </div>
+                <div class="price-selector">
+        <label for="price-range">Precio:</label>
+        <input type="range" class="form-range" id="price-range" min="0" max="100000" step="10" oninput="filterByPrice(this.value)" />
+                    <div style="display: flex; justify-content: center;">
+                    <output>50000</output>
+                        </div>
+                </div>
+<!-- Select con opciones filtrables -->
+                <div class="form-group">
+                    <label for="CategoryFilter">Filtrar por Categoría:</label>
+                    <select id="CategoryFilter" class="form-select" runat="server" aria-label="Default select example">
+                        <option value="" selected="selected">-- Categorías --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="BrandFilter">Filtrar por Marca:</label>
+                    <select id="BrandFilter" class="form-select" runat="server" aria-label="Default select example">
+                        <option value="" selected="selected">-- Marcas --</option>
+                    </select>
+                </div>
             </div>
 
             <!-- Offcanvas -->
@@ -81,45 +101,81 @@
             </section>
 
             <!-- Contenido Principal (cards) -->
-            <div class="flex-grow-1 mt-5">
-                <div class="container">
-                    <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <% foreach (ClasesDeDominio.Articulo articulo in ListArticulos)
-                            { %>
-                        <div class="col">
-                            <div class="card h-100">
-                                <div class="square-div">
-                                    <div class="square-div-content">
-                                        <img src="<%= !string.IsNullOrEmpty(articulo.listImagenes[0].urlImagen) ? articulo.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="card-img-top align-middle" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" style="max-width: 100%; max-height: 100%;" />
-                                    </div>
+<div class="flex-grow-1 mt-5" id="article-list">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <% foreach (ClasesDeDominio.Articulo articulo in ListArticulos) { %>
+                <div class="col article-card" data-price="<%= articulo.precio %>" data-category="<%= articulo.categoria.id %>" data-brand="<%= articulo.marca.id %>">
+                    <div class="card h-100">
+                        <div class="square-div">
+                            <div class="square-div-content">
+                                <img src="<%= !string.IsNullOrEmpty(articulo.listImagenes[0].urlImagen) ? articulo.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="card-img-top align-middle" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" style="max-width: 100%; max-height: 100%;" />
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title"><%= articulo.nombre %></h5>
+                            <div class="info-container">
+                                <div class="left-info">
+                                    <p class="brand">Marca</p>
+                                    <p><%= articulo.marca.descripcion %></p>
+                                    <p class="category">CATEGORÍA</p>
+                                    <p><%= articulo.categoria.descripcion %></p>
                                 </div>
-                                <div class="card-body">
-                                    <h5 class="card-title"><%= articulo.nombre %></h5>
-                                    <div class="info-container">
-                                        <div class="left-info">
-                                            <p class="brand">Marca</p>
-                                            <p><%= articulo.marca.descripcion %></p>
-                                            <p class="category">CATEGORIA</p>
-                                            <p><%= articulo.categoria.descripcion %></p>
-                                        </div>
-                                        <div class="right-info">
-                                            <p class="price">$<%= articulo.precio %></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <a href="DetalleArticulo.aspx?id=<%= articulo.id %>" class="btn btn-secondary btn-sm">Ver Detalle</a>
-                                    <a href="Default.aspx?id=<%= articulo.id %>&action=1" class="btn btn-primary btn-sm">Agregar al carrito</a>
+                                <div class="right-info">
+                                    <p class="price">$<%= articulo.precio %></p>
                                 </div>
                             </div>
                         </div>
-                        <% } %>
+                        <div class="card-footer">
+                            <a href="DetalleArticulo.aspx?id=<%= articulo.id %>" class="btn btn-secondary btn-sm">Ver Detalle</a>
+                            <a href="Default.aspx?id=<%= articulo.id %>&action=1" class="btn btn-primary btn-sm">Agregar al carrito</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <% } %>
         </div>
+    </div>
+</div> 
+</div> 
     </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!-- JavaScript para el filtrado de categorías, marcas y precio -->
+<script>
+    document.getElementById('<%= CategoryFilter.ClientID %>').addEventListener('change', filtrarArticulos);
+    document.getElementById('<%= BrandFilter.ClientID %>').addEventListener('change', filtrarArticulos);
+    document.getElementById('price-range').addEventListener('input', filtrarArticulos);
+
+    function filtrarArticulos() {
+        const selectedCategory = document.getElementById('<%= CategoryFilter.ClientID %>').value;
+        const selectedBrand = document.getElementById('<%= BrandFilter.ClientID %>').value;
+        const selectedPrice = parseInt(document.getElementById('price-range').value);
+
+        updatePriceOutput(selectedPrice); // Actualiza el valor del rango de precios
+
+        const articles = document.querySelectorAll('#article-list .col');
+
+        articles.forEach(article => {
+            const articleCategory = article.dataset.category;
+            const articleBrand = article.dataset.brand;
+            const articlePrice = parseFloat(article.dataset.price);
+
+            const matchCategory = !selectedCategory || articleCategory === selectedCategory;
+            const matchBrand = !selectedBrand || articleBrand === selectedBrand;
+            const matchPrice = selectedPrice === 0 || articlePrice <= selectedPrice;
+
+            if (matchCategory && matchBrand && matchPrice) {
+                article.style.display = "block";
+            } else {
+                article.style.display = "none";
+            }
+        });
+    }
+
+    function updatePriceOutput(price) {
+        const output = document.querySelector('.price-selector output');
+        output.textContent = price; // Actualiza el valor del output con el precio seleccionado
+    }
+</script>
 </body>
 </html>

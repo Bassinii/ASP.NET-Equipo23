@@ -42,6 +42,34 @@ namespace Site
                 Articulo seleccionado = ListCarrito.Find(x => x.id == id);
                 ListCarrito.Remove(seleccionado);
             }
+            if (!IsPostBack)
+            {
+                CargarCategorias();
+                CargarMarcas();
+            }
+        }
+        private void CargarCategorias()
+        {
+            NegocioCategoria negocio = new NegocioCategoria();
+            List<Categoria> categorias = negocio.listar();
+
+            foreach (Categoria categoria in categorias)
+            {
+                ListItem item = new ListItem(categoria.descripcion, categoria.id.ToString());
+                CategoryFilter.Items.Add(item);
+            }
+        }
+
+        private void CargarMarcas()
+        {
+            NegocioMarca negocio = new NegocioMarca();
+            List<Marca> marcas = negocio.listar();
+
+            foreach (Marca marca in marcas)
+            {
+                ListItem item = new ListItem(marca.descripcion, marca.id.ToString());
+                BrandFilter.Items.Add(item);
+            }
         }
     }
 }
