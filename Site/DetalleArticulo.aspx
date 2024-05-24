@@ -62,48 +62,82 @@
             </section>
 
 
+
     <div class="container mt-3 p-3">
         <h1><asp:Label ID="lblNombre" runat="server" Text=""></asp:Label></h1>
-        
-<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-    <div class="carousel-indicators d-flex justify-content-center">
-        <asp:Literal ID="ltlCarouselIndicators" runat="server"></asp:Literal>
-    </div>
-    <div class="carousel-inner">
-        <asp:Literal ID="ltlCarouselItems" runat="server"></asp:Literal>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </button>
-        </div>
+        <%
+            ClasesDeDominio.Articulo articulo = new ClasesDeDominio.Articulo();
+            if (Request.QueryString["id"] != null)
+            {
+                string idStr = Request.QueryString["id"];
+                int articuloId;
 
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="detail-info-container">
-                    <div class="left-info detail-left-info">
-                        <p><strong>Marca:</strong> <asp:Label ID="lblMarca" runat="server" Text=""></asp:Label></p>
-                        <p><strong>Categoría:</strong> <asp:Label ID="lblCategoria" runat="server" Text=""></asp:Label></p>
-                        <p><strong>Descripción:</strong> <asp:Label ID="lblDescripcion" runat="server" Text=""></asp:Label></p>
-                    </div>
+                if (int.TryParse(idStr, out articuloId))
+                {
+                    articulo = CargarDetalleArticulo(articuloId);
+                }
+                else
+                {
+                    Response.Write("ID no válido.");
+                }
+            }
+        %>
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-touch="false" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <%
+                    int contador = 0;
+                    foreach (ClasesDeDominio.Imagenes img in articulo.listImagenes)
+                    {
+                        if (contador == 0)
+                        {
+                %>
+                            <div class="carousel-item active">
+                                <img src="<%= img.urlImagen %>" class="d-block w-100" alt="...">
+                            </div>
+                <%
+                        }
+                        else
+                        {
+                %>
+                            <div class="carousel-item">
+                                <img src="<%= img.urlImagen %>" class="d-block w-100" alt="..."/>.
+                            </div>
+                <%
+                        }
+                        contador++;
+                    }
+                %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="detail-info-container">
+                <div class="left-info detail-left-info">
+                    <p><strong>Marca:</strong> <asp:Label ID="lblMarca" runat="server" Text=""></asp:Label></p>
+                    <p><strong>Categoría:</strong> <asp:Label ID="lblCategoria" runat="server" Text=""></asp:Label></p>
+                    <p><strong>Descripción:</strong> <asp:Label ID="lblDescripcion" runat="server" Text=""></asp:Label></p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="detail-info-container">
-                    <div class="right-info detail-right-info">
-                        <p><strong>Precio: $</strong> <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label></p>
-                    </div>
+        </div>
+        <div class="col-md-6">
+            <div class="detail-info-container">
+                <div class="right-info detail-right-info">
+                    <p><strong>Precio: $</strong> <asp:Label ID="lblPrecio" runat="server" Text=""></asp:Label></p>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+ZlZL5LX7lEN5amqt2+7cpZTMoC4+" crossorigin="anonymous"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-

@@ -33,24 +33,6 @@ namespace Site
         protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
-        /// Control ltlCarouselIndicators.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlCarouselIndicators;
-
-        /// <summary>
-        /// Control ltlCarouselItems.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlCarouselItems;
-
-        /// <summary>
         /// Control lblMarca.
         /// </summary>
         /// <remarks>

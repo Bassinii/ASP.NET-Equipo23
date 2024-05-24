@@ -65,7 +65,7 @@ namespace Site
 
 
         }
-        private void CargarDetalleArticulo(int articuloId)
+        public Articulo CargarDetalleArticulo(int articuloId)
         {
             NegocioArticulo negocio = new NegocioArticulo();
             Articulo articulo = negocio.obtenerPorId(articuloId);
@@ -83,23 +83,24 @@ namespace Site
 
 
                 // Genera el HTML del carrusel
-                var carouselInner = ltlCarouselItems;
-                carouselInner.Text = ""; // Limpia el contenido anterior
-                for (int i = 0; i < articulo.listImagenes.Count; i++)
-                {
-                    var imagen = articulo.listImagenes[i];
-                    var activeClass = i == 0 ? "active" : "";
-                    var carouselItem = $@"
-        <div class='carousel-item {activeClass}' data-bs-interval='10000'>
-            <img src='{imagen.urlImagen}' class='d-block w-100' alt='Imagen del artículo'>
-        </div>";
-                    carouselInner.Text += carouselItem;
-                }
+                /*   var carouselInner = ltlCarouselItems;
+                   carouselInner.Text = ""; // Limpia el contenido anterior
+                   for (int i = 0; i < articulo.listImagenes.Count; i++)
+                   {
+                       var imagen = articulo.listImagenes[i];
+                       var activeClass = i == 0 ? "active" : "";
+                       var carouselItem = $@"
+           <div class='carousel-item {activeClass}' data-bs-interval='10000'>
+               <img src='{imagen.urlImagen}' class='d-block w-100' alt='Imagen del artículo'>
+           </div>";
+                       carouselInner.Tex += carouselItem;
+                   }*/
             }
             else
             {
                 Response.Write("Artículo no encontrado.");
             }
+            return articulo;
         }
     }
 
