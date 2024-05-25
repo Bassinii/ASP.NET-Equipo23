@@ -10,12 +10,48 @@ using Site;
 
 namespace Site
 {
+
     public partial class DetalleArticulo1 : System.Web.UI.Page
     {
+
+        public float TotalCarrito { get; set; }
+        public int idArticulo { get; set; }
         public List<Articulo> ListCarrito;
         public List<Articulo> ListArticulos { get; set; }
+        public int cantidadProduc = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
+            NegocioArticulo neg = new NegocioArticulo();
+            ListArticulos = neg.listar();
+
+
+            ListCarrito = Session["Carrito"] != null ? (List<Articulo>)Session["Carrito"] : new List<Articulo>();
+            Session.Add("Carrito", ListCarrito);
+            cantidadProduc = ListCarrito.Count;
+
+            //se trae el id del articulo añadido al carrito
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 1)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                //busca el id del articulo seleccionado para guardarlo en una variable
+                Articulo seleccionado = ListArticulos.Find(x => x.id == id);
+
+                //lo añade a la lista del carrito
+                ListCarrito.Add(seleccionado);
+                cantidadProduc = ListCarrito.Count;
+            }
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 0)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                Articulo seleccionado = ListCarrito.Find(x => x.id == id);
+                ListCarrito.Remove(seleccionado);
+                cantidadProduc = ListCarrito.Count;
+            }
+            TotalCarrito = ListCarrito.Sum(articulo => articulo.precio);
+            if (Request.QueryString["id"] != null)
+            {
+                idArticulo = int.Parse(Request.QueryString["id"]);
+            }
             if (!IsPostBack)
             {
                 // Verifica si el parámetro "id" está presente en la cadena de consulta
@@ -46,22 +82,7 @@ namespace Site
                 }
             }
 
-            NegocioArticulo negocio = new NegocioArticulo();
-            ListArticulos = negocio.listar();
 
-            ListCarrito = Session["Carrito"] != null ? (List<Articulo>)Session["Carrito"] : new List<Articulo>();
-            Session.Add("Carrito", ListCarrito);
-
-            //se trae el id del articulo añadido al carrito
-            if (Request.QueryString["id"] != null)
-            {
-                int id = int.Parse(Request.QueryString["id"]);
-                //busca el id del articulo seleccionado para guardarlo en una variable
-                Articulo seleccionado = ListArticulos.Find(x => x.id == id);
-
-                //lo añade a la lista del carrito
-                ListCarrito.Add(seleccionado);
-            }
 
 
         }
@@ -105,4 +126,3 @@ namespace Site
     }
 
 }
-

@@ -9,6 +9,7 @@
     <title>Carrito</title>
     <link href="Content/Styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -21,12 +22,14 @@
                     </svg>
                     <span class="ms-2">Minecart</span>
                 </a>
+            
 
                 <button type="button" id="openCartButton" class="btn btn-primary d-flex align-items-center ms-auto" data-bs-toggle="offcanvas" data-bs-target="#carrito">
                     <img src="/Content/basket.svg" alt="Imagen del botón" width="24" height="24" class="me-2" />
                     Abrir Carrito
                 </button>
-            </div>
+                </div>
+            
         </nav>
 
         <div class="d-flex">
@@ -129,7 +132,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer">
-                                    <a href="DetalleArticulo.aspx?id=<%= articulo.id %>" class="btn btn-secondary btn-sm">Ver Detalle</a>
+                                    <a href="DetalleArticulo.aspx?id=<%= articulo.id %>&action=2" class="btn btn-secondary btn-sm">Ver Detalle</a>
                                     <a href="Default.aspx?id=<%= articulo.id %>&action=1" class="btn btn-primary btn-sm">Agregar al carrito</a>
                                 </div>
                             </div>
