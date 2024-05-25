@@ -31,16 +31,16 @@ namespace Site
             if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 1)
             {
                 int id = int.Parse(Request.QueryString["id"]);
-                Articulo obj = ListCarrito.Find(x => x.id == id);
-                if (obj == null)
+               // Articulo obj = ListCarrito.Find(x => x.id == id);//para no repetir 2 veces el mismo articulo
+               /* if (obj == null)
                 {
+
+                }*/
                     //busca el id del articulo seleccionado para guardarlo en una variable
-                    Articulo seleccionado = ListArticulos.Find(x => x.id == id);
+                 Articulo seleccionado = ListArticulos.Find(x => x.id == id);
 
                     //lo añade a la lista del carrito
-                    ListCarrito.Add(seleccionado);
-
-                }
+                 ListCarrito.Add(seleccionado);
 
                 cantidadProduc = ListCarrito.Count;
             }

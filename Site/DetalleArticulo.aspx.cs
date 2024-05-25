@@ -102,20 +102,6 @@ namespace Site
                 lblPrecio.Text = articulo.precio.ToString("F3");
 
 
-
-                // Genera el HTML del carrusel
-                /*   var carouselInner = ltlCarouselItems;
-                   carouselInner.Text = ""; // Limpia el contenido anterior
-                   for (int i = 0; i < articulo.listImagenes.Count; i++)
-                   {
-                       var imagen = articulo.listImagenes[i];
-                       var activeClass = i == 0 ? "active" : "";
-                       var carouselItem = $@"
-           <div class='carousel-item {activeClass}' data-bs-interval='10000'>
-               <img src='{imagen.urlImagen}' class='d-block w-100' alt='Imagen del artículo'>
-           </div>";
-                       carouselInner.Tex += carouselItem;
-                   }*/
             }
             else
             {
