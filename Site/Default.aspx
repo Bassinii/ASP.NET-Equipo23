@@ -10,22 +10,22 @@
     <link href="Content/Styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <style>
-    .items{
-        display :flex;
-        justify-content : center;
-        align-items : center;
-        gap : 1.1rem;
-    }
-    .cantProd {
-        color: white;
-        background-color : red;
-        padding : 0.1rem 0.6rem;
-        border-radius : 100%;
-        border : 1px solid red;
-        margin-top : 0.7rem;
-        font-weight : bold;
+        .items {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.1rem;
+        }
 
-    }
+        .cantProd {
+            color: white;
+            background-color: red;
+            padding: 0.1rem 0.6rem;
+            border-radius: 100%;
+            border: 1px solid red;
+            margin-top: 0.7rem;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -39,13 +39,13 @@
                     </svg>
                     <span class="ms-2">Minecart</span>
                 </a>
-                <div class="items"> 
-                <p class="cantProd"><%=cantidadProduc%></p>
+                <div class="items">
+                    <p class="cantProd"><%=cantidadProduc%></p>
 
-                <button type="button" id="openCartButton" class="btn btn-primary d-flex align-items-center ms-auto" data-bs-toggle="offcanvas" data-bs-target="#carrito">
-                    <img src="/Content/basket.svg" alt="Imagen del botón" width="24" height="24" class="me-2" />
-                    Abrir Carrito
-                </button>
+                    <button type="button" id="openCartButton" class="btn btn-primary d-flex align-items-center ms-auto" data-bs-toggle="offcanvas" data-bs-target="#carrito">
+                        <img src="/Content/basket.svg" alt="Imagen del botón" width="24" height="24" class="me-2" />
+                        Abrir Carrito
+                    </button>
                 </div>
             </div>
         </nav>
@@ -65,7 +65,7 @@
                         </svg>
                     </button>
                 </div>--%>
-                
+
                 <!-- Select con opciones filtrables -->
                 <div class="form-group mb-2">
                     <label class="fs-5" for="CategoryFilter">Categoría:</label>
@@ -101,16 +101,24 @@
                         <div class="row g-0">
                             <div class="col-md-4 d-flex align-items-start">
                                 <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close p-3 pt-2 align-self-start"></a>
-                                <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" />
+                                <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.png" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.png" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" />
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h5 class="card-title"><%= articulo1.nombre %></h5>
-                                    <p class="card-text">Categoría: <%= articulo1.categoria.descripcion %></p>
-                                    <p class="card-text">Marca: <%= articulo1.marca.descripcion %></p>
-                                    <p class="card-text">Precio: $<%= articulo1.precio %></p>
+                                    <h5 class="card-title m-0"><%= articulo1.nombre %></h5>
+                                    <p class="card-text m-0">Categoría: <%= articulo1.categoria.descripcion %></p>
+                                    <p class="card-text m-0">Marca: <%= articulo1.marca.descripcion %></p>
+                                    <p class="card-text m-0">Precio: $<%= articulo1.precio %></p>
+
+
                                 </div>
+                                
                             </div>
+<div class="col-md-2 d-flex flex-column align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary mb-1" onclick="updateQuantity(<%= articulo1.id %>, -1)">-</button>
+                                    <span class="quantity" id="quantity-<%= articulo1.id %>"><%= articulo1.codigo %></span>
+                                    <button class="btn btn-sm btn-outline-secondary mt-1" onclick="updateQuantity(<%= articulo1.id %>, 1)">+</button>
+                                </div>
                         </div>
                     </div>
                     <% } %>
@@ -132,7 +140,7 @@
                             <div class="card h-100">
                                 <div class="square-div">
                                     <div class="square-div-content">
-                                        <img src="<%= !string.IsNullOrEmpty(articulo.listImagenes[0].urlImagen) ? articulo.listImagenes[0].urlImagen : "/Content/noimage.jpg" %>" class="card-img-top align-middle" alt="..." data-default="/Content/noimage.jpg" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" style="max-width: 100%; max-height: 100%;" />
+                                        <img src="<%= !string.IsNullOrEmpty(articulo.listImagenes[0].urlImagen) ? articulo.listImagenes[0].urlImagen : "/Content/noimage.png" %>" class="card-img-top align-middle" alt="..." data-default="/Content/noimage.png" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" style="max-width: 100%; max-height: 100%;" />
                                     </div>
                                 </div>
                                 <div class="card-body">

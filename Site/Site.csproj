@@ -70,7 +70,7 @@
     <Content Include="Carrito.aspx" />
     <Content Include="Content\basket.svg" />
     <Content Include="Content\icon.svg" />
-    <Content Include="Content\noimage.jpg" />
+    <Content Include="Content\noimage.png" />
     <Content Include="Content\Styles.css" />
     <Content Include="Default.aspx" />
     <Content Include="DetalleArticulo.aspx" />
