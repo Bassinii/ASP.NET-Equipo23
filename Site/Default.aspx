@@ -95,7 +95,7 @@
                     <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <% foreach (ClasesDeDominio.Articulo articulo1 in ListCarrito)
+                    <% foreach (ClasesdeDominio.ArticuloCarrito articulo1 in ListCarrito)
                         { %>
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">
@@ -109,16 +109,16 @@
                                     <p class="card-text m-0">Categoría: <%= articulo1.categoria.descripcion %></p>
                                     <p class="card-text m-0">Marca: <%= articulo1.marca.descripcion %></p>
                                     <p class="card-text m-0">Precio: $<%= articulo1.precio %></p>
-
+                                    <div class="col-md-2 d-flex flex-column align-items-center">
+                                        <button class="btn btn-sm btn-outline-secondary mb-1" onclick="updateQuantity(<%= articulo1.id %>, -1)">-</button>
+                                        <span class="quantity" id="quantity-<%= articulo1.id %>"><%= articulo1.cant %></span>
+                                        <button class="btn btn-sm btn-outline-secondary mt-1" onclick="updateQuantity(<%= articulo1.id %>, 1)">+</button>
+                                    </div>
 
                                 </div>
-                                
+
                             </div>
-<div class="col-md-2 d-flex flex-column align-items-center">
-                                    <button class="btn btn-sm btn-outline-secondary mb-1" onclick="updateQuantity(<%= articulo1.id %>, -1)">-</button>
-                                    <span class="quantity" id="quantity-<%= articulo1.id %>"><%= articulo1.codigo %></span>
-                                    <button class="btn btn-sm btn-outline-secondary mt-1" onclick="updateQuantity(<%= articulo1.id %>, 1)">+</button>
-                                </div>
+
                         </div>
                     </div>
                     <% } %>
