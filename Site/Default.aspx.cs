@@ -106,5 +106,15 @@ namespace Site
                 BrandFilter.Items.Add(item);
             }
         }
+
+        protected void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            //AGRAGAR FUNCIONALIDAD
+        }
+
+        protected void BtnQuitar_Click(object sender, EventArgs e)
+        {
+            //AGREGAR FUNCIONALIDAD
+        }
     }
 }

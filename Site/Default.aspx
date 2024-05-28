@@ -109,10 +109,14 @@
                                     <p class="card-text m-0">Categoría: <%= articulo1.categoria.descripcion %></p>
                                     <p class="card-text m-0">Marca: <%= articulo1.marca.descripcion %></p>
                                     <p class="card-text m-0">Precio: $<%= articulo1.precio %></p>
-                                    <div class="col-md-2 d-flex flex-column align-items-center">
-                                        <button class="btn btn-sm btn-outline-secondary mb-1" onclick="updateQuantity(<%= articulo1.id %>, -1)">-</button>
-                                        <span class="quantity" id="quantity-<%= articulo1.id %>"><%= articulo1.cant %></span>
-                                        <button class="btn btn-sm btn-outline-secondary mt-1" onclick="updateQuantity(<%= articulo1.id %>, 1)">+</button>
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <div class="input-group" style="width: 100px;">
+                                            <asp:Button Text="-" ID="BtnQuitar" OnClick="BtnQuitar_Click" runat="server" Cssclass="btn btn-outline-secondary"/>
+                                            <%--<button class="btn btn-outline-secondary" type="button" id="button-addon1">-</button>--%>
+                                            <input type="text" class="form-control text-center" placeholder="<%=articulo1.cant%>" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                            <asp:Button Text="+" runat="server" Cssclass="btn btn-outline-secondary" OnClick="BtnAgregar_Click" ID="BtnAgregar"  />
+                                            <%--<button class="btn btn-outline-secondary" type="button" id="button-addon2">+</button>--%>
+                                        </div>
                                     </div>
 
                                 </div>
