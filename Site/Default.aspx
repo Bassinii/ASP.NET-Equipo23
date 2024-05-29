@@ -9,24 +9,7 @@
     <title>Carrito</title>
     <link href="Content/Styles.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-    <style>
-        .items {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.1rem;
-        }
 
-        .cantProd {
-            color: white;
-            background-color: red;
-            padding: 0.1rem 0.6rem;
-            border-radius: 100%;
-            border: 1px solid red;
-            margin-top: 0.7rem;
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -98,33 +81,30 @@
                     <% foreach (ClasesdeDominio.ArticuloCarrito articulo1 in ListCarrito)
                         { %>
                     <div class="card mb-3" style="max-width: 540px;">
-                        <div class="row g-0">
-                            <div class="col-md-4 d-flex align-items-start">
-                                <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close p-3 pt-2 align-self-start"></a>
-                                <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.png" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.png" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" />
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title m-0"><%= articulo1.nombre %></h5>
-                                    <p class="card-text m-0">Categoría: <%= articulo1.categoria.descripcion %></p>
-                                    <p class="card-text m-0">Marca: <%= articulo1.marca.descripcion %></p>
-                                    <p class="card-text m-0">Precio: $<%= articulo1.precio %></p>
-                                    <div class="d-flex justify-content-end align-items-center">
-                                        <div class="input-group" style="width: 100px;">
-                                            <asp:Button Text="-" ID="BtnQuitar" OnClick="BtnQuitar_Click" runat="server" Cssclass="btn btn-outline-secondary"/>
-                                            <%--<button class="btn btn-outline-secondary" type="button" id="button-addon1">-</button>--%>
-                                            <input type="text" class="form-control text-center" placeholder="<%=articulo1.cant%>" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                            <asp:Button Text="+" runat="server" Cssclass="btn btn-outline-secondary" OnClick="BtnAgregar_Click" ID="BtnAgregar"  />
-                                            <%--<button class="btn btn-outline-secondary" type="button" id="button-addon2">+</button>--%>
-                                        </div>
-                                    </div>
+    <div class="row g-0">
+        <div class="col-md-4 d-flex align-items-start">
+            <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close p-3 pt-2 align-self-start"></a>
+            <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.png" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.png" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" />
+        </div>
+        <div class="col-md-8 d-flex flex-column">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title m-0"><%= articulo1.nombre %></h5>
+                    <p class="card-text m-0">Categoría: <%= articulo1.categoria.descripcion %></p>
+                    <p class="card-text m-0">Marca: <%= articulo1.marca.descripcion %></p>
+                    <p class="card-text m-0">Precio: $<%= articulo1.precio %></p>
+                </div>
+                <div class="input-group " style="width: 100px; height: 50px">
+                    <asp:Button Text="-" ID="BtnQuitar" OnClick="BtnQuitar_Click" runat="server" CssClass="btn btn-outline-secondary" />
+                    <input type="text" class="form-control text-center p-0" placeholder="<%=articulo1.cant%>" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <asp:Button Text="+" runat="server" CssClass="btn btn-outline-secondary" OnClick="BtnAgregar_Click" ID="BtnAgregar"  />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                                </div>
 
-                            </div>
-
-                        </div>
-                    </div>
                     <% } %>
                     <!-- Mostrar el Total del Carrito -->
                     <div class="d-flex justify-content-between align-items-center mt-4">

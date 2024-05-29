@@ -114,7 +114,7 @@ namespace Site
 
         protected void BtnQuitar_Click(object sender, EventArgs e)
         {
-            //AGREGAR FUNCIONALIDAD
+            
         }
     }
 }
