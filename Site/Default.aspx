@@ -78,31 +78,37 @@
                     <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body">
+                    <%if (ListCarrito.Count == 0)
+                        {%>
+                    <div class="empty-cart text-center">
+                        <img src="Content/emptycart.png" class="img-fluid rounded-start" />
+                    </div>
+                    <% } %>
                     <% foreach (ClasesdeDominio.ArticuloCarrito articulo1 in ListCarrito)
                         { %>
                     <div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-        <div class="col-md-4 d-flex align-items-start">
-            <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close p-3 pt-2 align-self-start"></a>
-            <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.png" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.png" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" />
-        </div>
-        <div class="col-md-8 d-flex flex-column">
-            <div class="card-body d-flex justify-content-between align-items-center">
-                <div>
-                    <h5 class="card-title m-0"><%= articulo1.nombre %></h5>
-                    <p class="card-text m-0">Categoría: <%= articulo1.categoria.descripcion %></p>
-                    <p class="card-text m-0">Marca: <%= articulo1.marca.descripcion %></p>
-                    <p class="card-text m-0">Precio: $<%= articulo1.precio %></p>
-                </div>
-                <div class="input-group " style="width: 100px; height: 50px">
-                    <asp:Button Text="-" ID="BtnQuitar" OnClick="BtnQuitar_Click" runat="server" CssClass="btn btn-outline-secondary" />
-                    <input type="text" class="form-control text-center p-0" placeholder="<%=articulo1.cant%>" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    <asp:Button Text="+" runat="server" CssClass="btn btn-outline-secondary" OnClick="BtnAgregar_Click" ID="BtnAgregar"  />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                        <div class="row g-0">
+                            <div class="col-md-4 d-flex align-items-start">
+                                <a href="Default.aspx?id=<%= articulo1.id %>&action=0" class="btn-close p-3 pt-2 align-self-start"></a>
+                                <img src="<%= !string.IsNullOrEmpty(articulo1.listImagenes[0].urlImagen) ? articulo1.listImagenes[0].urlImagen : "/Content/noimage.png" %>" class="img-fluid rounded-start" alt="..." data-default="/Content/noimage.png" onerror="this.onerror=null;this.src=this.getAttribute('data-default');" />
+                            </div>
+                            <div class="col-md-8 d-flex flex-column">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5 class="card-title m-0 mb-1"><%= articulo1.nombre %></h5>
+                                        <p class="card-text m-0">Categoría: <%= articulo1.categoria.descripcion %></p>
+                                        <p class="card-text m-0">Marca: <%= articulo1.marca.descripcion %></p>
+                                        <p class="card-text m-0 price">$<%= articulo1.precio %></p>
+                                    </div>
+                                    <div class="input-group " style="width: 100px; height: 50px">
+                                        <asp:Button Text="-" ID="BtnQuitar" OnClick="BtnQuitar_Click" runat="server" CssClass="btn btn-outline-secondary" />
+                                        <input type="text" class="form-control text-center p-0" placeholder="<%=articulo1.cant%>" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                        <asp:Button Text="+" runat="server" CssClass="btn btn-outline-secondary" OnClick="BtnAgregar_Click" ID="BtnAgregar" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <% } %>

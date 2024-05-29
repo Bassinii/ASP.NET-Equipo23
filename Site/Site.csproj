@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\basket.svg" />
+    <Content Include="Content\emptycart.png" />
     <Content Include="Content\icon.svg" />
     <Content Include="Content\noimage.png" />
     <Content Include="Content\Styles.css" />

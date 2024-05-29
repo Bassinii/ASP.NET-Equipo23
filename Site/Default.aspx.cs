@@ -74,7 +74,7 @@ namespace Site
                 cantidadProduc = ListCarrito.Count;
             }
 
-            TotalCarrito = ListCarrito.Sum(articulo => articulo.precio);
+            TotalCarrito = ListCarrito.Sum(articulo => articulo.precio*articulo.cant);
 
             if (!IsPostBack)
             {
