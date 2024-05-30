@@ -34,13 +34,7 @@ namespace Site
             {
                 int id = int.Parse(Request.QueryString["id"]);
 
-                // Articulo obj = ListCarrito.Find(x => x.id == id);//para no repetir 2 veces el mismo articulo
-                /* if (obj == null)
-                 {
-
-                 }*/
-
-                //busca el id del articulo seleccionado para guardarlo en una variable
+               
                 Articulo seleccionado;
                 seleccionado = ListArticulos.Find(x => x.id == id);
                 if (seleccionado != null)
@@ -73,8 +67,33 @@ namespace Site
 
                 cantidadProduc = ListCarrito.Count;
             }
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 3)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                ArticuloCarrito seleccionado;
+                seleccionado = (ArticuloCarrito)ListCarrito.Find(x => x.id == id);
+                if (seleccionado.cant > 1) 
+                { 
+                    ListCarrito.Remove(seleccionado);
+                    seleccionado.cant--;
+                    ListCarrito.Add(seleccionado);
+                    
+                }
 
-            TotalCarrito = ListCarrito.Sum(articulo => articulo.precio*articulo.cant);
+            }
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 4)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                ArticuloCarrito seleccionado;
+                seleccionado = (ArticuloCarrito)ListCarrito.Find(x => x.id == id);
+               
+                    ListCarrito.Remove(seleccionado);
+                    seleccionado.cant++;
+                    ListCarrito.Add(seleccionado);
+
+                
+            }
+                TotalCarrito = ListCarrito.Sum(articulo => articulo.precio*articulo.cant);
 
             if (!IsPostBack)
             {
@@ -107,14 +126,5 @@ namespace Site
             }
         }
 
-        protected void BtnAgregar_Click(object sender, EventArgs e)
-        {
-            //AGRAGAR FUNCIONALIDAD
-        }
-
-        protected void BtnQuitar_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }
