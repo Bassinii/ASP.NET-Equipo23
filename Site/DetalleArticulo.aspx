@@ -56,7 +56,7 @@
                     <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="offcanvas"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <% foreach (ClasesDeDominio.Articulo articulo1 in ListCarrito)
+                    <% foreach (ClasesdeDominio.ArticuloCarrito articulo1 in ListCarrito)
                         { %>
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row g-0">

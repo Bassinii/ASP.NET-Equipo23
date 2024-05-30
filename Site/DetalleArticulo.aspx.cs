@@ -1,4 +1,5 @@
 ﻿using ClasesDeDominio;
+using ClasesdeDominio;
 using Negocio;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Site
 
         public float TotalCarrito { get; set; }
         public int idArticulo { get; set; }
-        public List<Articulo> ListCarrito;
+        public List<ArticuloCarrito> ListCarrito;
         public List<Articulo> ListArticulos { get; set; }
         public int cantidadProduc = 0;
         protected void Page_Load(object sender, EventArgs e)
@@ -25,7 +26,7 @@ namespace Site
             ListArticulos = neg.listar();
 
 
-            ListCarrito = Session["Carrito"] != null ? (List<Articulo>)Session["Carrito"] : new List<Articulo>();
+            ListCarrito = Session["Carrito"] != null ? (List<ArticuloCarrito>)Session["Carrito"] : new List<ArticuloCarrito>();
             Session.Add("Carrito", ListCarrito);
             cantidadProduc = ListCarrito.Count;
 
@@ -34,17 +35,33 @@ namespace Site
             {
                 int id = int.Parse(Request.QueryString["id"]);
                 //busca el id del articulo seleccionado para guardarlo en una variable
-                Articulo seleccionado = ListArticulos.Find(x => x.id == id);
+                Articulo seleccionado;
+                seleccionado = ListArticulos.Find(x => x.id == id);
+                if (seleccionado != null)
+                {
+                    ArticuloCarrito existeCarrito = ListCarrito.Find(x => x.id == id);
 
-                //lo añade a la lista del carrito
-                ListCarrito.Add(seleccionado);
+                    if (existeCarrito != null)
+                    {
+                        existeCarrito.cant++;
+                    }
+                    else
+                    {
+                        //Creamos seleccionadoCarrito mandandole al construcor seleccionado para que copie sus props.
+                        ArticuloCarrito seleccionadoCarrito = new ArticuloCarrito(seleccionado);
+                        ListCarrito.Add(seleccionadoCarrito);
+                    }
+                }
+
                 cantidadProduc = ListCarrito.Count;
             }
             if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 0)
             {
                 int id = int.Parse(Request.QueryString["id"]);
-                Articulo seleccionado = ListCarrito.Find(x => x.id == id);
+                ArticuloCarrito seleccionado;
+                seleccionado = (ArticuloCarrito)ListCarrito.Find(x => x.id == id);
                 ListCarrito.Remove(seleccionado);
+
                 cantidadProduc = ListCarrito.Count;
             }
             TotalCarrito = ListCarrito.Sum(articulo => articulo.precio);
