@@ -72,9 +72,9 @@
                                     <p class="card-text">Precio: $<%= articulo1.precio %></p>
                                 </div>
                                  <div class="input-group " style="width: 100px; height: 50px">
-                                        <asp:Button Text="-" ID="BtnQuitar" OnClick="BtnQuitar_Click" runat="server" CssClass="btn btn-outline-secondary" />
-                                        <input type="text" class="form-control text-center p-0" placeholder="<%=articulo1.cant%>" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                        <asp:Button Text="+" runat="server" CssClass="btn btn-outline-secondary" OnClick="BtnAgregar_Click" ID="BtnAgregar" />
+                                        <a href="Default.aspx?id=<%= articulo1.id %>&action=3" id="BtnQuitar"   class="btn btn-outline-secondary" > - </a>
+                                        <input type="text" class="form-control text-center p-0" placeholder="<%=articulo1.cant%>" aria-label="Example text with button addon" aria-describedby="button-addon1"/>
+                                        <a  href="Default.aspx?id=<%= articulo1.id %>&action=4" class="btn btn-outline-secondary"  id="BtnAgregar" > + </a>
                                     </div>
                             </div>
                         </div>

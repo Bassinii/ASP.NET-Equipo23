@@ -64,6 +64,32 @@ namespace Site
 
                 cantidadProduc = ListCarrito.Count;
             }
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 3)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                ArticuloCarrito seleccionado;
+                seleccionado = (ArticuloCarrito)ListCarrito.Find(x => x.id == id);
+                if (seleccionado.cant > 1)
+                {
+                    ListCarrito.Remove(seleccionado);
+                    seleccionado.cant--;
+                    ListCarrito.Add(seleccionado);
+
+                }
+
+            }
+            if (Request.QueryString["id"] != null && int.Parse(Request.QueryString["action"]) == 4)
+            {
+                int id = int.Parse(Request.QueryString["id"]);
+                ArticuloCarrito seleccionado;
+                seleccionado = (ArticuloCarrito)ListCarrito.Find(x => x.id == id);
+
+                ListCarrito.Remove(seleccionado);
+                seleccionado.cant++;
+                ListCarrito.Add(seleccionado);
+
+
+            }
             TotalCarrito = ListCarrito.Sum(articulo => articulo.precio);
             if (Request.QueryString["id"] != null)
             {
